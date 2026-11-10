@@ -1,0 +1,55 @@
+{
+  "kb": {
+    "title": "Conocimiento",
+    "lead": "Lo que el proyecto sabe: decisiones, procedimientos y referencias. Las personas y los bots leen y escriben las mismas páginas.",
+    "guideShow": "Cómo alimentarla",
+    "guideHide": "Ocultar guía",
+    "openTab": "Abrir en pestaña nueva",
+    "write": {
+      "title": "Escríbela",
+      "body": "Edita en el editor de abajo: se guarda solo. Para crear una página, escribe su nombre entre dobles corchetes, por ejemplo [[Decisiones]], y haz clic en el enlace."
+    },
+    "ask": {
+      "title": "Pídesela a un bot",
+      "body": "Un bot con acceso consulta estas páginas antes de trabajar y las actualiza cuando se lo pides.",
+      "example": "Documenta en la base de conocimiento cómo desplegamos a producción.",
+      "none": "Todavía no hay bots en este proyecto.",
+      "on": "Con acceso",
+      "pending": "Sin aplicar",
+      "give": "Dar acceso",
+      "review": "Revisar y aplicar los cambios",
+      "giveTip": "Abre el perfil del bot: activa la skill project-knowledge y aplica los cambios.",
+      "import": "Importar primero",
+      "importTip": "Este bot se creó en OpenMausBot y no está en el archivo del equipo. Impórtalo en Bots y luego dale acceso."
+    },
+    "files": {
+      "title": "Trae lo que ya tienes",
+      "body": "Sube una carpeta o un zip y la IA los convierte en páginas. O copia archivos Markdown (.md) a esta carpeta del proyecto: aparecen aquí al instante."
+    },
+    "import": {
+      "open": "Importar con IA",
+      "close": "Cerrar importación",
+      "title": "Importar con IA",
+      "lead": "Arrastra una carpeta, un zip o archivos sueltos (Markdown, texto, Word, HTML, PDF). Un agente los lee y escribe páginas nuevas por tema. Nunca reemplaza una página que ya existe.",
+      "privacy": "El contenido de los archivos se envía al proveedor de IA del proyecto. No subas contraseñas ni claves.",
+      "frame": "Selector de archivos para importar",
+      "waiting": "Sube archivos para empezar",
+      "uploading": "Subiendo…",
+      "ready_one": "{{count}} archivo subido",
+      "ready_other": "{{count}} archivos subidos",
+      "run": "Convertir en páginas",
+      "running": "Escribiendo páginas…",
+      "failed": "La importación falló.",
+      "done_one": "Se creó {{count}} página.",
+      "done_other": "Se crearon {{count}} páginas.",
+      "conflicts_one": "{{count}} ya existía y no se tocó.",
+      "conflicts_other": "{{count}} ya existían y no se tocaron.",
+      "report": "Ver el informe"
+    },
+    "note": "Cada página es un archivo en project/wiki/ y entra en el historial del proyecto con el respaldo (Git). No guardes contraseñas ni claves.",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "frame": "Editor de conocimiento",
+    "unavailable": "La base de conocimiento no está disponible. Revisa en Apps que esté en marcha."
+  }
+}

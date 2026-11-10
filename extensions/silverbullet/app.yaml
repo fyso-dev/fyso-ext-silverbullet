@@ -1,0 +1,5 @@
+id: silverbullet
+name: {es: Conocimiento, en: Knowledge}
+description: {es: Base de conocimiento compartida con los agentes, en: Knowledge base shared with agents}
+icon: book-open
+url: http://docs.${FYSO_WEB_DOMAIN}:${FYSO_HTTP_PORT}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "silverbullet": {
+      "type": "stdio",
+      "command": "bash",
+      "args": ["extensions/silverbullet/mcp.sh"]
+    }
+  }
+}

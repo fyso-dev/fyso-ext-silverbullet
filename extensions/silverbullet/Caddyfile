@@ -1,0 +1,26 @@
+# The framework login snippet owns authentication and the cross-site guard.
+http://docs.{$FYSO_WEB_DOMAIN}:{$FYSO_HTTP_PORT} {
+    import fyso_login
+    # Import (D59). The picker must share this origin: the guard refuses writes from others.
+    handle /.kb/upload/* {
+        reverse_proxy unix//tmp/fyso-ext-silverbullet-{$FYSO_EXT_SILVERBULLET_PORT}.sock
+    }
+    handle_path /.kb/picker/uppy/* {
+        root * {$FYSO_DATA}/ext/silverbullet/uppy
+        file_server
+    }
+    handle_path /.kb/picker/locales/* {
+        root * {$FYSO_DATA}/ext/silverbullet/uppy-locales
+        file_server
+    }
+    handle_path /.kb/picker/* {
+        root * {$FYSO_ROOT}/extensions/silverbullet/picker
+        file_server
+    }
+    handle /.kb/* {
+        respond 404
+    }
+    handle {
+        reverse_proxy 127.0.0.1:{$FYSO_EXT_SILVERBULLET_PORT}
+    }
+}
