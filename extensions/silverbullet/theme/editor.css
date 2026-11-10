@@ -1,0 +1,107 @@
+/* SilverBullet 2.12.1 native CSS variables mapped to the Fyso panel palette.
+   Embedded tokens come from the panel; standalone defaults match its design system. */
+@font-face {
+  font-family: Gilroy; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('./fonts/Gilroy-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: Gilroy; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('./fonts/Gilroy-Bold.woff2') format('woff2');
+}
+html {
+  --kb-bg: #f3f2f7; --kb-surface: #fff; --kb-surface-2: #f3f2f7;
+  --kb-text: #26252d; --kb-mute: #6b6a75;
+  --kb-line: rgba(38, 37, 45, .08); --kb-line-2: rgba(38, 37, 45, .18);
+  --kb-accent-hover: #5a14d6; --kb-accent-text: #6e1fff; --kb-accent-soft: #efe6ff;
+  --kb-scrim: rgba(14, 14, 18, .38);
+  --kb-warn: #8a5100; --kb-ok: #126b42; --kb-down: #b42323;
+  color-scheme: light;
+}
+html[data-fyso-theme="dark"], html:not([data-fyso-theme])[data-theme="dark"] {
+  --kb-bg: #0e0e12; --kb-surface: #1a1920; --kb-surface-2: #24232b;
+  --kb-text: #fff; --kb-mute: #9c9ba5;
+  --kb-line: rgba(255, 255, 255, .07); --kb-line-2: rgba(255, 255, 255, .18);
+  --kb-accent-hover: #8f55ff; --kb-accent-text: #a57bff; --kb-accent-soft: #2b1b57;
+  --kb-scrim: rgba(0, 0, 0, .6);
+  --kb-warn: #f0b24a; --kb-ok: #4cc38a; --kb-down: #ff7a7a;
+  color-scheme: dark;
+}
+/* Match native dark selector specificity, including when the host forces light. */
+html[data-fyso-theme], html[data-theme], html {
+  --ui-font: Gilroy, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --editor-font: var(--ui-font);
+  --ui-accent-color: var(--fy-accent, #6e1fff);
+  --ui-accent-text-color: var(--fy-accent-text, var(--kb-accent-text));
+  --ui-accent-contrast-color: #fff;
+  --root-background-color: var(--fy-surface, var(--kb-surface));
+  --root-color: var(--fy-text, var(--kb-text));
+  --subtle-color: var(--fy-mute, var(--kb-mute));
+  --subtle-background-color: var(--fy-surface-2, var(--kb-surface-2));
+  --ui-surface-background-color: var(--root-background-color);
+  --ui-surface-color: var(--root-color);
+  --ui-surface-subtle-color: var(--subtle-color);
+  --ui-surface-border-color: var(--fy-line-2, var(--kb-line-2));
+  --ui-surface-section-background-color: var(--subtle-background-color);
+  --ui-surface-hover-background-color: var(--subtle-background-color);
+  --top-background-color: var(--fy-bg, var(--kb-bg));
+  --top-border-color: var(--fy-line, var(--kb-line));
+  --top-color: var(--root-color);
+  --top-saved-color: var(--subtle-color);
+  --top-unsaved-color: var(--ui-accent-text-color);
+  --top-loading-color: var(--subtle-color);
+  --panel-background-color: var(--root-background-color);
+  --panel-border-color: var(--fy-line, var(--kb-line));
+  --modal-background-color: var(--root-background-color);
+  --modal-color: var(--root-color);
+  --modal-border-color: var(--fy-line-2, var(--kb-line-2));
+  --modal-backdrop-color: var(--fy-scrim, var(--kb-scrim));
+  --modal-help-background-color: var(--subtle-background-color);
+  --modal-help-color: var(--subtle-color);
+  --modal-selected-option-background-color: var(--fy-accent-soft, var(--kb-accent-soft));
+  --modal-selected-option-color: var(--root-color);
+  --modal-description-color: var(--subtle-color);
+  --button-background-color: var(--subtle-background-color);
+  --button-hover-background-color: var(--fy-accent-soft, var(--kb-accent-soft));
+  --button-color: var(--root-color);
+  --button-border-color: var(--fy-line-2, var(--kb-line-2));
+  --primary-button-hover-background-color: var(--fy-accent-hover, var(--kb-accent-hover));
+  --text-field-background-color: var(--subtle-background-color);
+  --action-button-color: var(--subtle-color);
+  --action-button-hover-color: var(--ui-accent-text-color);
+  --action-button-active-color: var(--ui-accent-text-color);
+  --editor-heading-color: var(--root-color);
+  --editor-caret-color: var(--root-color);
+  --editor-selection-background-color: var(--fy-accent-soft, var(--kb-accent-soft));
+  --link-color: var(--ui-accent-text-color);
+  --editor-link-color: var(--ui-accent-text-color);
+  --editor-link-url-color: var(--ui-accent-text-color);
+  --editor-wiki-link-page-color: var(--ui-accent-text-color);
+  --editor-wiki-link-page-background-color: var(--fy-accent-soft, var(--kb-accent-soft));
+  --editor-code-background-color: var(--subtle-background-color);
+  --editor-code-color: var(--root-color);
+  --link-missing-color: var(--fy-warn, var(--kb-warn));
+  --link-invalid-color: var(--fy-down, var(--kb-down));
+  --editor-wiki-link-page-missing-color: var(--link-missing-color);
+  --editor-wiki-link-page-invalid-color: var(--link-invalid-color);
+  --meta-color: var(--subtle-color);
+  --meta-subtle-color: var(--subtle-color);
+  --editor-code-comment-color: var(--subtle-color);
+  --editor-code-variable-color: var(--root-color);
+  --editor-code-typename-color: var(--ui-accent-text-color);
+  --editor-code-string-color: var(--fy-ok, var(--kb-ok));
+  --editor-code-number-color: var(--fy-ok, var(--kb-ok));
+  --editor-code-operator-color: var(--subtle-color);
+  --editor-code-atom-color: var(--fy-warn, var(--kb-warn));
+  --editor-struct-color: var(--ui-accent-text-color);
+  --editor-panels-bottom-background-color: var(--subtle-background-color);
+  --editor-panels-bottom-color: var(--root-color);
+  --editor-panels-bottom-border-color: var(--fy-line, var(--kb-line));
+}
+#sb-top { font-family: var(--ui-font); }
+.sb-modal-box, .sb-modal, .sb-anchored-menu { border-radius: 12px; }
+button, input, select, textarea { font-family: var(--ui-font); }
+button { border-radius: 999px; }
+input, select, textarea { border-radius: 8px; }
+button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--fy-focus, var(--ui-accent-text-color)); outline-offset: 2px;
+}

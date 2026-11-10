@@ -17,6 +17,17 @@ http://docs.{$FYSO_WEB_DOMAIN}:{$FYSO_HTTP_PORT} {
         root * {$FYSO_ROOT}/extensions/silverbullet/picker
         file_server
     }
+    # Only presentation assets are exposed; the login boundary still applies.
+    @themeFonts path /.kb/theme/fonts/Gilroy-Regular.woff2 /.kb/theme/fonts/Gilroy-Bold.woff2
+    handle @themeFonts {
+        uri strip_prefix /.kb/theme/fonts
+        root * {$FYSO_ROOT}/framework/panel/src/assets/fonts
+        file_server
+    }
+    handle_path /.kb/theme/* {
+        root * {$FYSO_ROOT}/extensions/silverbullet/theme
+        file_server
+    }
     handle /.kb/* {
         respond 404
     }

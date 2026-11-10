@@ -32,3 +32,11 @@ const report = () => {
   parent.postMessage({type: 'fyso-kb-import', batch, files: done, pending: files.length - done}, panel);
 };
 for (const event of ['complete', 'file-removed', 'upload', 'cancel-all']) uppy.on(event, report);
+
+// Change presentation without replacing the picker or its resumable-upload batch.
+addEventListener('message', event => {
+  if (event.source !== parent || event.origin !== panel ||
+      event.data?.type !== 'fyso-kb-theme' || !['light', 'dark'].includes(event.data.theme)) return;
+  uppy.getPlugin('Dashboard').setOptions({theme: event.data.theme});
+});
+parent.postMessage({type: 'fyso-kb-picker-ready'}, panel);

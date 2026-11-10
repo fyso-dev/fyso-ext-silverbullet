@@ -52,6 +52,26 @@ This changes the extension answers to the tagged source so subsequent
 Disable the skill on bots before `mise run ext:remove silverbullet` and restart
 the project stack. Wiki and runtime data are retained.
 
+## Panel theme
+
+The embedded editor shares the panel's Gilroy typography, violet accents, neutral
+surfaces, borders and light/dark mode. SilverBullet's native `SB_HEAD_HTML` loads
+extension-owned assets through authenticated `/.kb/theme/` routes; wiki pages,
+CONFIG and custom Space Style are not written or replaced.
+
+Live mode/token updates use origin- and window-checked messages. The matching
+framework change adds an opt-in SDK theme channel so changing the panel theme
+keeps the editor, selection and upload picker in place. Install the companion
+framework change before relying on switching modes without a reload. Plain HTML
+extensions keep the existing query-string/reload behavior.
+
+The full-window link opens in the panel's current mode. Subsequent native
+SilverBullet theme changes take precedence there. A direct URL without `theme`
+uses SilverBullet's own mode preference. Project Space Style remains available
+and can override the extension's CSS. Code blocks retain native monospace fonts.
+
+[Browser acceptance and screenshots](docs/evidence/panel-theme/README.md).
+
 ## Runtime and security
 
 Pinned tools: SilverBullet 2.12.1, official filesystem MCP 2.2.0, tusd 2.10.1,

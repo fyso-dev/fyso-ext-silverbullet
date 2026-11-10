@@ -12,4 +12,6 @@ fi
 # Caddy owns browser authentication. No runtime browser, shell or extra history.
 export SB_RUNTIME_API=0 SB_SHELL_BACKEND=off SB_REVISIONS=disabled
 export SB_DISABLE_SERVICE_WORKER=1
+# Native head customization keeps presentation outside project-owned wiki pages.
+export SB_HEAD_HTML="${SB_HEAD_HTML:-}$(cat extensions/silverbullet/theme/head.html)"
 exec silverbullet --single -L 127.0.0.1 -p "${FYSO_EXT_SILVERBULLET_PORT:?}" "$space"
