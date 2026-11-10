@@ -1,7 +1,7 @@
 // Knowledge page (extensions-contract §9): the SilverBullet editor inside the panel,
 // with a short guide on how pages get there. No build step: panel SDK v1 as an ES module.
 const sdk = await import(new URL('/assets/extension-sdk.js', location.origin).href);
-const {mountExtensionPage, createElement: h, useState, useEffect, useTranslation, useStore, useDaguAction, ActionButton, ActionStatus, botRoster} = sdk;
+const {mountExtensionPage, createElement: h, useState, useEffect, useRef, useTranslation, useStore, useDaguAction, ActionButton, ActionStatus, botRoster} = sdk;
 
 const EXT = 'silverbullet';
 const SKILL = '${FYSO_ROOT}/extensions/silverbullet/skills/project-knowledge/SKILL.md';
@@ -56,7 +56,7 @@ function Way({n, title, body, children}) {
 
 // Import with AI (D59): the picker (on the knowledge base's own origin) uploads a folder
 // or zip and reports its batch; this page starts the workflow and shows what it wrote.
-function Import({app, onReport}) {
+function Import({app, onReport, theme}) {
   const {t, i18n} = useTranslation();
   const {backend} = useStore();
   // loadLast: the last import's result and its report link survive a reload.
@@ -74,7 +74,18 @@ function Import({app, onReport}) {
     return () => removeEventListener('message', listen);
   }, [origin]);
   const lang = i18n.language?.startsWith('en') ? 'en' : 'es';
-  const theme = new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light';
+  const initialTheme = useRef(theme);
+  const picker = useRef(null);
+  useEffect(() => {
+    const send = () => picker.current?.contentWindow?.postMessage({type: 'fyso-kb-theme', theme}, origin);
+    const ready = event => {
+      if (event.source === picker.current?.contentWindow && event.origin === origin &&
+          event.data?.type === 'fyso-kb-picker-ready') send();
+    };
+    addEventListener('message', ready);
+    send();
+    return () => removeEventListener('message', ready);
+  }, [theme, origin, round]);
   const running = action.phase === 'running';
   const ready = !!upload && upload.files > 0 && upload.pending === 0;
   const run = async () => {
@@ -90,8 +101,8 @@ function Import({app, onReport}) {
   else if (!running && upload?.pending) status = h('span', {className: 'action-status', role: 'status'}, t('kb.import.uploading'));
   else if (action.phase === 'never' || action.phase === 'loading') status = h('span', {className: 'action-status'}, t('kb.import.waiting'));
   return h('section', {className: 'card kb-import', 'aria-label': t('kb.import.title')},
-    h('iframe', {key: round, className: 'kb-picker', title: t('kb.import.frame'),
-      src: `${origin}/.kb/picker/index.html?lang=${lang}&theme=${theme}`}),
+    h('iframe', {key: round, ref: picker, className: 'kb-picker', title: t('kb.import.frame'),
+      src: `${origin}/.kb/picker/index.html?lang=${lang}&theme=${initialTheme.current}`}),
     h('div', {className: 'kb-import-side'},
       h('h2', null, t('kb.import.title')),
       h('p', null, t('kb.import.lead')),
@@ -126,13 +137,41 @@ function Page() {
     setGuide(!guide);
   };
   const app = apps.data?.find(a => a.id === EXT);
+  const editor = useRef(null);
+  const [theme, setTheme] = useState(() => document.documentElement.classList.contains('fy-dark') ? 'dark' : 'light');
+  useEffect(() => {
+    if (!app) return;
+    const origin = new URL(app.url).origin;
+    const send = () => {
+      const styles = getComputedStyle(document.documentElement);
+      const colors = Object.fromEntries(['surface', 'surface-2', 'bg', 'text', 'mute', 'line',
+        'line-2', 'accent', 'accent-hover', 'accent-text', 'accent-soft', 'focus', 'scrim', 'warn', 'ok', 'down']
+        .map(key => [key, styles.getPropertyValue(`--fy-${key}`).trim()]));
+      const mode = document.documentElement.classList.contains('fy-dark') ? 'dark' : 'light';
+      setTheme(mode);
+      editor.current?.contentWindow?.postMessage({type: 'fyso-kb-theme', theme: mode, colors}, origin);
+    };
+    const ready = event => {
+      if (event.origin === origin && event.source === editor.current?.contentWindow &&
+          event.data?.type === 'fyso-kb-theme-ready') send();
+    };
+    addEventListener('message', ready);
+    const observer = new MutationObserver(send);
+    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['class', 'style']});
+    const frame = editor.current;
+    frame?.addEventListener('load', send);
+    send();
+    return () => { removeEventListener('message', ready); observer.disconnect(); frame?.removeEventListener('load', send); };
+  }, [app?.url, page.n]);
+  const tabUrl = app && new URL(app.url);
+  if (tabUrl) tabUrl.searchParams.set('theme', theme);
   document.title = t('kb.title');
   return h('main', {className: 'kb'},
     h('header', {className: 'kb-head'},
       h('div', {className: 'grow'}, h('h1', null, t('kb.title')), h('p', null, t('kb.lead'))),
       h('button', {type: 'button', className: 'btn btn-sm btn-soft', 'aria-expanded': guide, onClick: toggle},
         t(guide ? 'kb.guideHide' : 'kb.guideShow')),
-      app && h('a', {className: 'btn btn-sm btn-soft', href: app.url, target: '_blank', rel: 'noreferrer'}, `${t('kb.openTab')} ↗`)),
+      app && h('a', {className: 'btn btn-sm btn-soft', href: tabUrl.href, target: '_blank', rel: 'noreferrer'}, `${t('kb.openTab')} ↗`)),
     guide && h('div', {className: 'kb-guide'},
       h(Way, {n: 1, title: t('kb.write.title'), body: t('kb.write.body')}),
       h(Way, {n: 2, title: t('kb.ask.title'), body: t('kb.ask.body')}, h(Bots), h(Copy, {text: t('kb.ask.example')})),
@@ -140,9 +179,9 @@ function Page() {
         app && h('button', {type: 'button', className: 'btn btn-sm btn-pri kb-import-open', 'aria-expanded': importing,
           onClick: () => setImporting(!importing)}, t(importing ? 'kb.import.close' : 'kb.import.open')),
         h(Copy, {text: FOLDER, code: true})),
-      importing && app && h(Import, {app, onReport: open}),
+      importing && app && h(Import, {app, onReport: open, theme}),
       h('p', {className: 'kb-note'}, t('kb.note'))),
-    app ? h('iframe', {key: page.n, className: 'kb-frame', title: t('kb.frame'),
+    app ? h('iframe', {key: page.n, ref: editor, className: 'kb-frame', title: t('kb.frame'),
         src: page.path ? `${app.url.replace(/\/$/, '')}/${encodeURI(page.path)}` : app.url})
       : apps.status !== 'loading' && h('p', {className: 'kb-empty', role: 'alert'}, t('kb.unavailable')));
 }
