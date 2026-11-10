@@ -1,0 +1,21 @@
+_min_copier_version: "9.19.1"
+_answers_file: .copier-answers.ext-silverbullet.yml
+_templates_suffix: .slotjinja
+_external_data:
+  project: .copier-answers.yml
+extension_port:
+  type: int
+  default: "{{ _external_data.project.port_base + 10 }}"
+  help: Port in the project's extension block
+  validator: >-
+    {% if _external_data.project.port_base is defined and (extension_port < _external_data.project.port_base + 10 or extension_port > _external_data.project.port_base + 19) %}
+    Choose a port in the project's extension block (+10 through +19).
+    {% endif %}
+_exclude:
+  - copier.yml
+  - README.md
+  - .git
+  - tests
+  - docs
+  - .github
+  - .gitignore

@@ -1,0 +1,55 @@
+{
+  "kb": {
+    "title": "Knowledge",
+    "lead": "What the project knows: decisions, procedures and references. People and bots read and write the same pages.",
+    "guideShow": "How to feed it",
+    "guideHide": "Hide guide",
+    "openTab": "Open in a new tab",
+    "write": {
+      "title": "Write it",
+      "body": "Edit in the editor below: it saves by itself. To create a page, write its name in double brackets, for example [[Decisions]], and click the link."
+    },
+    "ask": {
+      "title": "Ask a bot",
+      "body": "A bot with access reads these pages before working and updates them when you ask.",
+      "example": "Document in the knowledge base how we deploy to production.",
+      "none": "This project has no bots yet.",
+      "on": "Has access",
+      "pending": "Not applied",
+      "give": "Give access",
+      "review": "Review and apply the changes",
+      "giveTip": "Opens the bot's profile: switch the project-knowledge skill on and apply the changes.",
+      "import": "Import first",
+      "importTip": "This bot was created in OpenMausBot and is not in the team file. Import it on Bots, then give it access."
+    },
+    "files": {
+      "title": "Bring what you already have",
+      "body": "Upload a folder or a zip and AI turns them into pages. Or copy Markdown files (.md) into this project folder: they show up here right away."
+    },
+    "import": {
+      "open": "Import with AI",
+      "close": "Close import",
+      "title": "Import with AI",
+      "lead": "Drop a folder, a zip or single files (Markdown, text, Word, HTML, PDF). An agent reads them and writes new pages by topic. It never replaces a page that already exists.",
+      "privacy": "The content of the files is sent to the project's AI provider. Do not upload passwords or keys.",
+      "frame": "File picker for the import",
+      "waiting": "Upload files to start",
+      "uploading": "Uploading…",
+      "ready_one": "{{count}} file uploaded",
+      "ready_other": "{{count}} files uploaded",
+      "run": "Turn into pages",
+      "running": "Writing pages…",
+      "failed": "The import failed.",
+      "done_one": "{{count}} page was created.",
+      "done_other": "{{count}} pages were created.",
+      "conflicts_one": "{{count}} already existed and was left alone.",
+      "conflicts_other": "{{count}} already existed and were left alone.",
+      "report": "See the report"
+    },
+    "note": "Each page is a file in project/wiki/ and enters the project history with the backup (Git). Do not store passwords or keys.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "frame": "Knowledge editor",
+    "unavailable": "The knowledge base is not available. Check in Apps that it is running."
+  }
+}

@@ -1,0 +1,16 @@
+[tools]
+"github:silverbulletmd/silverbullet" = { version = "2.12.1", asset_pattern = '{% raw %}silverbullet-server-{{ os(macos="darwin") }}-{{ arch(x64="x86_64", arm64="aarch64") }}.zip{% endraw %}' }
+"npm:@modelcontextprotocol/server-filesystem" = "2.2.0"
+# Import (D59): resumable uploads, the folder/zip picker, zip extraction and document conversion.
+"github:tus/tusd" = "2.10.1"
+"npm:uppy" = "6.0.7"
+"npm:@uppy/locales" = "5.3.2"
+"npm:extract-zip" = "2.0.1"
+"github:jgm/pandoc" = "3.13"
+
+[env]
+FYSO_EXT_SILVERBULLET_PORT = "{{ extension_port }}"
+
+[tasks."silverbullet:doctor"]
+description = "Check the project knowledge base"
+run = "framework/scripts/run-ext.sh silverbullet -- bash extensions/silverbullet/doctor.sh"
