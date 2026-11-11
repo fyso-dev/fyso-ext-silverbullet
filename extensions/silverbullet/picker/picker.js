@@ -9,7 +9,16 @@ const english = query.get('lang') === 'en';
 const {default: locale} = await import(`./locales/${english ? 'en_US' : 'es_ES'}.js`);
 const panel = location.origin.replace('//docs.', '//panel.');
 // One batch per page load: the workflow imports the uploads that carry this id.
-const batch = crypto.randomUUID();
+function newBatch() {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  // Custom HTTP domains lack randomUUID; getRandomValues remains available.
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+const batch = newBatch();
 // Folders bring files nobody means to import.
 const noise = file => `/${file.meta.relativePath || file.name}`.split('/')
   .some(part => part.startsWith('.') || part === 'node_modules' || part === '__MACOSX');

@@ -92,3 +92,11 @@ node --test tests/import.test.cjs
 The framework repository holds the real HTTP/MCP and authenticated browser
 integration suites and their recorded evidence. No upstream runtime versions
 were changed for this release.
+
+## Custom HTTP domains
+
+The import picker supports private HTTP domains configured through framework D61.
+When the browser does not expose `crypto.randomUUID`, it generates UUID v4 batch
+identifiers with `crypto.getRandomValues`. The upload protocol and batch metadata
+remain unchanged. Run `node --test tests/picker.test.cjs tests/import.test.cjs`
+to verify initialization and import boundaries.
