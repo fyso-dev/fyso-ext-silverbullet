@@ -18,7 +18,7 @@ mise run doctor
 Or install this release directly:
 
 ```sh
-mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --vcs-ref v0.1.0
+mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --vcs-ref v0.1.2
 ```
 
 Open **Conocimiento / Knowledge** in the panel. The editor and agents share
@@ -44,7 +44,7 @@ migrate the extension's source explicitly (review and commit pending project
 changes before updating):
 
 ```sh
-mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --overwrite --vcs-ref v0.1.0
+mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --overwrite --vcs-ref v0.1.2
 ```
 
 This changes the extension answers to the tagged source so subsequent
@@ -92,3 +92,11 @@ node --test tests/import.test.cjs
 The framework repository holds the real HTTP/MCP and authenticated browser
 integration suites and their recorded evidence. No upstream runtime versions
 were changed for this release.
+
+## Custom HTTP domains
+
+The import picker supports private HTTP domains configured through framework D61.
+When the browser does not expose `crypto.randomUUID`, it generates UUID v4 batch
+identifiers with `crypto.getRandomValues`. The upload protocol and batch metadata
+remain unchanged. Run `node --test tests/picker.test.cjs tests/import.test.cjs`
+to verify initialization and import boundaries.
