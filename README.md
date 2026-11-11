@@ -18,7 +18,7 @@ mise run doctor
 Or install this release directly:
 
 ```sh
-mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --vcs-ref v0.1.0
+mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --vcs-ref v0.1.2
 ```
 
 Open **Conocimiento / Knowledge** in the panel. The editor and agents share
@@ -44,7 +44,7 @@ migrate the extension's source explicitly (review and commit pending project
 changes before updating):
 
 ```sh
-mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --overwrite --vcs-ref v0.1.0
+mise run ext:add gh:fyso-dev/fyso-ext-silverbullet -- --defaults --overwrite --vcs-ref v0.1.2
 ```
 
 This changes the extension answers to the tagged source so subsequent
