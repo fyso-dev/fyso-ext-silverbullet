@@ -13,6 +13,7 @@ extension_port:
     {% endif %}
 _exclude:
   - copier.yml
+  - LICENSE
   - README.md
   - .git
   - tests
