@@ -100,3 +100,9 @@ When the browser does not expose `crypto.randomUUID`, it generates UUID v4 batch
 identifiers with `crypto.getRandomValues`. The upload protocol and batch metadata
 remain unchanged. Run `node --test tests/picker.test.cjs tests/import.test.cjs`
 to verify initialization and import boundaries.
+
+## License
+
+Copyright (C) 2026 Fyso.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3 (`AGPL-3.0-only`). It is distributed WITHOUT ANY WARRANTY; see [LICENSE](LICENSE) for the full text.
