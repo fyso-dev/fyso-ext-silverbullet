@@ -1,7 +1,7 @@
 {
   "kb": {
     "title": "Conocimiento",
-    "lead": "Lo que el proyecto sabe: decisiones, procedimientos y referencias. Las personas y los bots leen y escriben las mismas páginas.",
+    "lead": "Lo que el proyecto sabe: decisiones, procedimientos y referencias. Las personas y los agentes leen y escriben las mismas páginas.",
     "guideShow": "Cómo alimentarla",
     "guideHide": "Ocultar guía",
     "openTab": "Abrir en pestaña nueva",
@@ -10,17 +10,17 @@
       "body": "Edita en el editor de abajo: se guarda solo. Para crear una página, escribe su nombre entre dobles corchetes, por ejemplo [[Decisiones]], y haz clic en el enlace."
     },
     "ask": {
-      "title": "Pídesela a un bot",
-      "body": "Un bot con acceso consulta estas páginas antes de trabajar y las actualiza cuando se lo pides.",
+      "title": "Pídesela a un agente",
+      "body": "Un agente con acceso consulta estas páginas antes de trabajar y las actualiza cuando se lo pides.",
       "example": "Documenta en la base de conocimiento cómo desplegamos a producción.",
-      "none": "Todavía no hay bots en este proyecto.",
+      "none": "Todavía no hay agentes en este proyecto.",
       "on": "Con acceso",
       "pending": "Sin aplicar",
       "give": "Dar acceso",
       "review": "Revisar y aplicar los cambios",
-      "giveTip": "Abre el perfil del bot: activa la skill project-knowledge y aplica los cambios.",
+      "giveTip": "Abre el perfil del agente: activa la skill project-knowledge y aplica los cambios.",
       "import": "Importar primero",
-      "importTip": "Este bot se creó en OpenMausBot y no está en el archivo del equipo. Impórtalo en Bots y luego dale acceso."
+      "importTip": "Este agente se creó en Agentes y no está en el archivo del equipo. Impórtalo en Agentes y luego dale acceso."
     },
     "files": {
       "title": "Trae lo que ya tienes",

@@ -1,7 +1,7 @@
 {
   "kb": {
     "title": "Knowledge",
-    "lead": "What the project knows: decisions, procedures and references. People and bots read and write the same pages.",
+    "lead": "What the project knows: decisions, procedures and references. People and agents read and write the same pages.",
     "guideShow": "How to feed it",
     "guideHide": "Hide guide",
     "openTab": "Open in a new tab",
@@ -10,17 +10,17 @@
       "body": "Edit in the editor below: it saves by itself. To create a page, write its name in double brackets, for example [[Decisions]], and click the link."
     },
     "ask": {
-      "title": "Ask a bot",
-      "body": "A bot with access reads these pages before working and updates them when you ask.",
+      "title": "Ask an agent",
+      "body": "An agent with access reads these pages before working and updates them when you ask.",
       "example": "Document in the knowledge base how we deploy to production.",
-      "none": "This project has no bots yet.",
+      "none": "This project has no agents yet.",
       "on": "Has access",
       "pending": "Not applied",
       "give": "Give access",
       "review": "Review and apply the changes",
-      "giveTip": "Opens the bot's profile: switch the project-knowledge skill on and apply the changes.",
+      "giveTip": "Opens the agent's profile: switch the project-knowledge skill on and apply the changes.",
       "import": "Import first",
-      "importTip": "This bot was created in OpenMausBot and is not in the team file. Import it on Bots, then give it access."
+      "importTip": "This agent was created in Agents and is not in the team file. Import it on Agents, then give it access."
     },
     "files": {
       "title": "Bring what you already have",
